@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 
 from pathlib import Path
 import dj_database_url
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -21,10 +22,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "django-insecure-*q1cafg1#iqa-+60bpj=b9s7po&@1z=*)a1z5@2hpckpgrnd&a"
-
+SECRET_KEY = os.environ.get('SECRET_KEY', default='dev')
+print(SECRET_KEY,"OIL21532546545635")
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = 'RENDER' not in os.environ
 
 ALLOWED_HOSTS = []
 
@@ -121,14 +122,18 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = "static/"
-
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 CORS_ALLOW_ALL_ORIGINS = True
-ALLOWED_HOSTS = [
-    'api-our-story.onrender.com',
-    '127.0.0.1',
-    'localhost'
-]
+
+if 'RENDER' not in os.environ:
+
+    ALLOWED_HOSTS = [
+        '127.0.0.1',
+        'localhost'
+    ]
+else:
+    ALLOWED_HOSTS =['api-our-story.onrender.com']
