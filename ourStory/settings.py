@@ -79,14 +79,24 @@ WSGI_APPLICATION = "ourStory.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-DATABASES = {
-    'default': dj_database_url.config(
-        default='postgres://misteroil:pITfKiWforFfgw9iaWvjFnYXADgTGrwX@dpg-cjri7d5he99c73asfoo0-a.singapore-postgres.render.com/our_story',
-        conn_max_age=600
-    )
+if not DEBUG:
+    DATABASES = {
+        'default': dj_database_url.config(
+            default='postgres://misteroil:pITfKiWforFfgw9iaWvjFnYXADgTGrwX@dpg-cjri7d5he99c73asfoo0-a.singapore-postgres.render.com/our_story',
+            conn_max_age=600
+        )
+    }
+else:
+    DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'our_story',
+        'USER': 'MisterOil',
+        'PASSWORD': os.environ.get('DBPASSWORD'),
+        'HOST': 'localhost',
+        'PORT': '5432',
+    }
 }
-
-
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
 
