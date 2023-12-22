@@ -82,7 +82,7 @@ WSGI_APPLICATION = "ourStory.wsgi.application"
 if not DEBUG:
     DATABASES = {
         'default': dj_database_url.config(
-            default='postgres://misteroil:pITfKiWforFfgw9iaWvjFnYXADgTGrwX@dpg-cjri7d5he99c73asfoo0-a.singapore-postgres.render.com/our_story',
+            default='postgres://ourstory_user:EFpxgVvYxAsoeW4loF1xylmpCfCLoqOb@dpg-cm2s03mn7f5s73ejk5kg-a.singapore-postgres.render.com/ourstory',
             conn_max_age=600
         )
     }
