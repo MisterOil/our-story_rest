@@ -19,5 +19,5 @@ from django.urls import path
 from ourStory import views
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("storys/", views.story_list)
+    path("storys/", views.story_list, name='story_list'),
 ]
