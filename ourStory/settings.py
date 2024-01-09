@@ -161,5 +161,5 @@ if 'RENDER' not in os.environ:
     CSRF_TRUSTED_ORIGINS = ['http://localhost:3000']
 else:
     ALLOWED_HOSTS = [os.environ.get('RENDER_EXTERNAL_HOSTNAME'),'https://our-story-ljm9.onrender.com']
-    CSRF_TRUSTED_ORIGINS = ['https://' + os.environ.get('RENDER_EXTERNAL_HOSTNAME'),'https://' + os.environ.get('ALLOW_CORS_FRONT')]
-    CORS_ALLOWED_ORIGINS = ['https://' + os.environ.get('RENDER_EXTERNAL_HOSTNAME'),'https://' + os.environ.get('ALLOW_CORS_FRONT')]
+    CSRF_TRUSTED_ORIGINS = ['https://' + os.environ.get('RENDER_EXTERNAL_HOSTNAME'), os.environ.get('ALLOW_CORS_FRONT')]
+    CORS_ALLOWED_ORIGINS = ['https://' + os.environ.get('RENDER_EXTERNAL_HOSTNAME'), os.environ.get('ALLOW_CORS_FRONT')]
